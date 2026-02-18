@@ -1,13 +1,15 @@
 import 'package:ecommerce/app/app_colors.dart';
 import 'package:ecommerce/app/assets_path.dart';
+import 'package:ecommerce/features/common/ui/controllers/main_bottom_nav_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import '../widgets/app_bar_icon_data.dart';
-import '../widgets/category_item_widget.dart';
+import '../../../common/ui/widgets/category_item_widget.dart';
 import '../widgets/home_carousel_slider.dart';
 import '../widgets/home_section_header.dart';
-import '../widgets/product_item_widget.dart';
+import '../../../common/ui/widgets/product_item_widget.dart';
 import '../widgets/search_bar.dart';
 
 class HomeScreens extends StatefulWidget {
@@ -37,7 +39,9 @@ class _HomeScreensState extends State<HomeScreens> {
               SizedBox(height: 16,),
               HomeSectionHeader(
                 title: "All Category",
-                onTap: (){},
+                onTap: (){
+                  Get.find<MainBottomNavController>().moveToCategory();
+                },
               ),
               const SizedBox(height: 8,),
               SingleChildScrollView(

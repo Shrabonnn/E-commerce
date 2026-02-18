@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../app/app_colors.dart';
-import '../../../app/assets_path.dart';
+import '../../../../app/app_colors.dart';
+import '../../../../app/assets_path.dart';
+
 
 class ProductItemWidget extends StatelessWidget {
   const ProductItemWidget({

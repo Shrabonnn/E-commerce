@@ -4,6 +4,8 @@ import 'package:ecommerce/features/auth/ui/screens/complete_profile_screen.dart'
 import 'package:ecommerce/features/auth/ui/screens/email_verification_screen.dart';
 import 'package:ecommerce/features/auth/ui/screens/otp_verification_screen.dart';
 import 'package:ecommerce/features/auth/ui/screens/splash_screen.dart';
+import 'package:ecommerce/features/category/ui/screens/category_list_screen.dart';
+import 'package:ecommerce/features/product/ui/screens/product_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -19,13 +21,34 @@ class CraftyBay extends StatelessWidget {
       initialBinding: ControllerBinder(),
       initialRoute: '/',
       theme:AppThemeData.lightThemeData,
-      routes: {
-        '/' : (context)=> const SplashScreen(),
-        EmailVerificationScreen.name : (context) => EmailVerificationScreen(),
-        OtpVerificationScreen.name : (context) => OtpVerificationScreen(),
-        CompleteProfileScreen.name: (context) => CompleteProfileScreen(),
-        MainBottomNavBarScreen.name: (context) => MainBottomNavBarScreen(),
-      },
+      onGenerateRoute: (RouteSettings settings){
+        late Widget widget;
+        if (settings.name == SplashScreen.name) {
+          widget = const SplashScreen();
+        }
+        else if (settings.name == EmailVerificationScreen.name) {
+          widget = const EmailVerificationScreen();
+        } else if (settings.name == OtpVerificationScreen.name) {
+          //String email = settings.arguments as String;
+          widget = OtpVerificationScreen();
+        } else if (settings.name == CompleteProfileScreen.name) {
+          widget = const CompleteProfileScreen();
+        } else if (settings.name == MainBottomNavBarScreen.name) {
+          widget = const MainBottomNavBarScreen();
+        } else if (settings.name == CategoryListScreen.name) {
+          widget = const CategoryListScreen();
+        }
+        else if (settings.name == ProductListScreen.name) {
+          String name = settings.arguments as String;
+          widget =  ProductListScreen(categoryName: name);
+        }
+        return MaterialPageRoute(
+          builder: (ctx) {
+            return widget;
+          },
+        );
+      }
+
     );
   }
 }

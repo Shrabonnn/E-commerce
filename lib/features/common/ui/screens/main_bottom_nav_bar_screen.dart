@@ -1,7 +1,10 @@
-import 'package:ecommerce/features/Home/screens/home_screens.dart';
+
+import 'package:ecommerce/features/category/ui/screens/category_list_screen.dart';
 import 'package:ecommerce/features/common/ui/controllers/main_bottom_nav_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../Home/ui/screens/home_screens.dart';
 
 class MainBottomNavBarScreen extends StatefulWidget {
   const MainBottomNavBarScreen({super.key});
@@ -16,25 +19,30 @@ class _MainBottomNavBarScreenState extends State<MainBottomNavBarScreen> {
 
   final List<Widget> _screens =[
     HomeScreens(),
-    HomeScreens(),
+    CategoryListScreen(),
     HomeScreens(),
     HomeScreens(),
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _screens[mainBottomNavController.selectedIndex.value],
-      bottomNavigationBar: Obx(()=>NavigationBar(
+    return GetBuilder<MainBottomNavController>(builder: (bottomNavController) {
+      return Scaffold(
+          body: _screens[mainBottomNavController.selectedIndex.value],
+          bottomNavigationBar: Obx(()=>NavigationBar(
 
-        selectedIndex: mainBottomNavController.selectedIndex.value,
-        onDestinationSelected: mainBottomNavController.changeIndex,
-        destinations:const [
-          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.category), label: 'Categories'),
-          NavigationDestination(icon: Icon(Icons.shopping_cart), label: 'Cart'),
-          NavigationDestination(icon: Icon(Icons.favorite_border), label: 'Wish'),
-        ],
-      ),)
+            selectedIndex: mainBottomNavController.selectedIndex.value,
+            onDestinationSelected: mainBottomNavController.changeIndex,
+            destinations:const [
+              NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+              NavigationDestination(icon: Icon(Icons.category), label: 'Categories'),
+              NavigationDestination(icon: Icon(Icons.shopping_cart), label: 'Cart'),
+              NavigationDestination(icon: Icon(Icons.favorite_border), label: 'Wish'),
+            ],
+          ),
+          ),
+      );
+    },
     );
   }
 }
+
