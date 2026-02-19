@@ -30,14 +30,17 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
           items: [1,2,3,4,5].map((i) {
             return Builder(
               builder: (BuildContext context) {
-                return Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.symmetric(horizontal: 2.0),
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadiusGeometry.circular(8)
-                    ),
-                    child: Center(child: Text('text $i', style: TextStyle(fontSize: 16.0),))
+                return Padding(
+                  padding: const EdgeInsets.only(left: 2.0),
+                  child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.symmetric(horizontal: 2.0),
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadiusGeometry.circular(8)
+                      ),
+                      child: Center(child: Text('text $i', style: TextStyle(fontSize: 16.0),))
+                  ),
                 );
               },
             );
