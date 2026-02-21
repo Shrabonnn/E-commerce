@@ -1,6 +1,7 @@
 import 'package:ecommerce/app/app_colors.dart';
 import 'package:ecommerce/features/product/ui/widgets/color_picker_widget.dart';
 import 'package:ecommerce/features/product/ui/widgets/size_picker_widget.dart';
+import 'package:ecommerce/features/review/ui/screens/reviews_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 
@@ -55,7 +56,9 @@ class _ProductDetailsScreeenState extends State<ProductDetailsScreeen> {
                                       Icon(Icons.star,size: 18,color: Colors.amber,),
                                       const SizedBox(width: 4,),
                                       Text("4.5",style: TextStyle(fontWeight: FontWeight.w600,color: Colors.grey)),
-                                      TextButton(onPressed: (){}, child: Text('Reviews')),
+                                      TextButton(onPressed: (){
+                                        Navigator.pushNamed(context, ReviewsListScreen.name);
+                                      }, child: Text('Reviews')),
                                       Container(
                                         padding: EdgeInsets.all(4),
                                         decoration: BoxDecoration(
