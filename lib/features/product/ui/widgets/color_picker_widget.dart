@@ -2,7 +2,9 @@ import 'package:ecommerce/app/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ColorPickerwidget extends StatefulWidget {
-  const ColorPickerwidget({super.key, required this.colors});
+  const ColorPickerwidget({super.key, required this.colors, required this.onChanged});
+
+  final Function(String) onChanged;
 
   final List<String> colors;
   @override
@@ -27,6 +29,7 @@ class _ColorPickerwidgetState extends State<ColorPickerwidget> {
     for(String color in widget.colors){
       colorList.add(getColorItemWidget(name: color, onTap: (){
         _selectedColor = color;
+        widget.onChanged(_selectedColor!);
         setState(() {
 
         });
@@ -40,6 +43,7 @@ class _ColorPickerwidgetState extends State<ColorPickerwidget> {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(8),
+        margin: EdgeInsets.all(4),
         decoration: BoxDecoration(
           border: Border.all(),
           color: isSelected ? AppColors.themeColor : Colors.transparent

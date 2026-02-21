@@ -1,10 +1,10 @@
 import 'package:ecommerce/app/app_colors.dart';
 import 'package:ecommerce/features/product/ui/widgets/color_picker_widget.dart';
-import 'package:ecommerce/features/product/ui/widgets/product_quantity_inc_dec_button.dart';
 import 'package:ecommerce/features/product/ui/widgets/size_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 
+import '../../../common/ui/widgets/product_quantity_inc_dec_button.dart';
 import '../widgets/product_images_carousel.dart';
 
 class ProductDetailsScreeen extends StatefulWidget {
@@ -70,7 +70,11 @@ class _ProductDetailsScreeenState extends State<ProductDetailsScreeen> {
                               ),
                             ),
                             const SizedBox(width: 8,),
-                            ProductQuantityIncDecButton()
+                            ProductQuantityIncDecButton(
+                              onChange: (int value){
+
+                              },
+                            )
                           ],
                         ),
                         SizedBox(height: 16,),
@@ -78,11 +82,19 @@ class _ProductDetailsScreeenState extends State<ProductDetailsScreeen> {
                         SizedBox(height: 8,),
                         ColorPickerwidget(
                           colors: ['Red','Blue','Purple','Yellow'],
+                          onChanged: (String color){
+
+                          },
                         ),
                         SizedBox(height: 16,),
                         Text('Size',style: textTheme.titleMedium,),
                         SizedBox(height: 8,),
-                        SizePickerWidget(size: ['M','L','XL','XXL']),
+                        SizePickerWidget(
+                          size: ['M','L','XL','XXL'],
+                          onChanged: (String size){
+
+                          },
+                        ),
                         SizedBox(height: 16,),
                         Text('Description',style: textTheme.titleMedium,),
                         SizedBox(height: 8,),

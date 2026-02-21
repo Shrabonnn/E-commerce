@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SizePickerWidget extends StatefulWidget {
-  const SizePickerWidget({super.key,required this.size});
+  const SizePickerWidget({super.key,required this.size,required this.onChanged});
+
+  final Function(String) onChanged;
 
   final List<String> size;
   @override
@@ -12,6 +14,10 @@ class SizePickerWidget extends StatefulWidget {
 
 class _SizePickerWidgetState extends State<SizePickerWidget> {
   String? _selected;
+
+  Color hexToColor(String code) {
+    return Color(int.parse(code.replaceFirst('#', '0xff')));
+  }
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -24,6 +30,7 @@ class _SizePickerWidgetState extends State<SizePickerWidget> {
     for (String size in widget.size){
       sizeList.add(sizeItemWidget(name: size, onTap: (){
         _selected = size;
+        widget.onChanged(_selected!);
         setState(() {
 
         });
@@ -37,6 +44,7 @@ class _SizePickerWidgetState extends State<SizePickerWidget> {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(8),
+        margin: EdgeInsets.all(4),
         decoration: BoxDecoration(
           border: Border.all(),
           color: isSelected ? AppColors.themeColor : Colors.transparent

@@ -2,7 +2,9 @@ import 'package:ecommerce/app/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ProductQuantityIncDecButton extends StatefulWidget {
-  const ProductQuantityIncDecButton({super.key});
+  const ProductQuantityIncDecButton({super.key, required this.onChange});
+
+  final Function(int) onChange;
 
   @override
   State<ProductQuantityIncDecButton> createState() => _ProductQuantityIncDecButtonState();
@@ -18,6 +20,7 @@ class _ProductQuantityIncDecButtonState extends State<ProductQuantityIncDecButto
         _buildIconButton(icon: Icon(Icons.remove),onTap: (){
           if(_count> 1){
             _count--;
+            widget.onChange(_count);
             setState(() {
 
             });
@@ -31,6 +34,7 @@ class _ProductQuantityIncDecButtonState extends State<ProductQuantityIncDecButto
         _buildIconButton(icon: Icon(Icons.add),onTap: (){
           if(_count< 20){
             _count++;
+            widget.onChange(_count);
             setState(() {
 
             });
@@ -54,8 +58,8 @@ class _buildIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 35,
-      width: 35,
+      height: 30,
+      width: 30,
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.themeColor,
